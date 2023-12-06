@@ -1,4 +1,14 @@
 {:paths ["." "smoke-test.bb"]
  :tasks {compile-cljs (shell "npx shadow-cljs compile main")
          smoke-test {:doc "Start the app, run smoke test"
-                     :task (load-file "./smoke-test.bb")}}}
+                     :task (load-file "./smoke-test.bb")}
+         docker {:doc "Run docker build"
+                 :task (shell "docker build -t fulcro-rad-demo .")}
+         cpdj   {:requires ([babashka.fs :as fs])
+                 :doc "Copy app.jar from docker image"
+                 :task (shell (str "docker run --rm -v " (fs/cwd) ":/shared fulcro-rad-demo cp /app/app.jar /shared/")) }
+         
+        run-docker {:task (shell "docker run --rm -p 3010:3000 -p 9010:9000 fulcro-rad-demo")}
+        run-bash {:task (shell "docker run --rm -it -p 3010:3000 -p 9010:9000 fulcro-rad-demo bash")}
+         }}
+
