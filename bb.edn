@@ -6,9 +6,12 @@
                  :task (shell "docker build -t fulcro-rad-demo .")}
          cpdj   {:requires ([babashka.fs :as fs])
                  :doc "Copy app.jar from docker image"
-                 :task (shell (str "docker run --rm -v " (fs/cwd) ":/shared fulcro-rad-demo cp /app/app.jar /shared/")) }
-         
-        run-docker {:task (shell "docker run --rm -p 3010:3000 -p 9010:9000 fulcro-rad-demo")}
-        run-bash {:task (shell "docker run --rm -it -p 3010:3000 -p 9010:9000 fulcro-rad-demo bash")}
-         }}
+                 :task (shell (str "docker run --rm -v " (fs/cwd) ":/shared fulcro-rad-demo cp /app/app.jar /shared/"))}
+
+         run-docker {:task (shell "docker run --rm -p 3000:3000 -p 9000:9000 fulcro-rad-demo")}
+         run-bash {:task (shell "docker run --rm -it -p 3000:3000 -p 9000:9000 fulcro-rad-demo bash")}
+         watch {:doc "Watch & compile frontend"
+                :task (shell "npx shadow-cljs watch main")}
+         back {:doc "Start the backend - datomic"
+               :task (shell "clj -A:datomic:dev -M -m devmain")}}}
 

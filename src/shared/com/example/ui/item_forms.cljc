@@ -66,6 +66,8 @@
                            :ascending?       true}
 
    ro/form-links          {item/item-name ItemForm}
+   ro/row-actions         [{:label "View" :action (fn [report-instance {:item/keys [id] :as row-props}]
+                                           (form/view! report-instance ItemForm id))}]
 
    ro/links               {:category/label (fn [this {:category/keys [label]}]
                                              (control/set-parameter! this ::category label)
