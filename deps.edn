@@ -55,7 +55,12 @@
                        :extra-deps  {thheller/shadow-cljs                {:mvn/version "2.20.16"}
                                      com.fulcrologic/semantic-ui-wrapper {:mvn/version "2.1.4"}
                                      binaryage/devtools                  {:mvn/version "1.0.6"}
-                                     org.clojure/tools.namespace         {:mvn/version "1.4.4"}}}
+                                     org.clojure/tools.namespace         {:mvn/version "1.4.4"}
+                                     holyjak/fulcro-troubleshooting      {:git/url "https://github.com/holyjak/fulcro-troubleshooting"
+                                                                         ;; BEWARE: run `clojure -X:deps git-resolve-tags` to insert 
+                                                                         ;; the correct :sha (warning: it will reformat the file :'( )
+                                                                         :sha "51599bf965f89cf58812a5c7753ab69154eded62" :tag "latest"}}}
+
            :build     {:extra-paths ["build"]
                        :deps        {io.github.clojure/tools.build {:mvn/version "0.9.6"}}
                        :ns-default build}}}

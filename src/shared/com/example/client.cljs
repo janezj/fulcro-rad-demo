@@ -37,10 +37,11 @@
   (rad-app/install-ui-controls! app sui/all-controls)
   (report/install-formatter! app :boolean :affirmation (fn [_ value] (if value "yes" "no"))))
 
-(defonce app (-> (rad-app/fulcro-rad-app {})
-               (with-react18)
-               (btxn/with-batched-reads)
-               #_(sync/with-synchronous-transactions #{:remote})))
+(defonce app (-> (rad-app/fulcro-rad-app
+                  {:render-middleware (when goog.DEBUG js/holyjak.fulcro_troubleshooting.troubleshooting_render_middleware)})
+                 (with-react18)
+                 (btxn/with-batched-reads)
+                 #_(sync/with-synchronous-transactions #{:remote})))
 
 (defn refresh []
   ;; hot code reload of installed controls
