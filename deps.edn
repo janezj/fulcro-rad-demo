@@ -59,7 +59,7 @@
                                      holyjak/fulcro-troubleshooting      {:git/url "https://github.com/holyjak/fulcro-troubleshooting"
                                                                          ;; BEWARE: run `clojure -X:deps git-resolve-tags` to insert 
                                                                          ;; the correct :sha (warning: it will reformat the file :'( )
-                                                                         :sha "51599bf965f89cf58812a5c7753ab69154eded62" :tag "latest"}}}
+                                                                          :sha "f89ddfadb38ba1e4d67aae50c57965a0584941e2"}}}
 
            :build     {:extra-paths ["build"]
                        :deps        {io.github.clojure/tools.build {:mvn/version "0.9.6"}}

@@ -8,7 +8,7 @@
                  :doc "Copy app.jar from docker image"
                  :task (shell (str "docker run --rm -v " (fs/cwd) ":/shared fulcro-rad-demo cp /app/app.jar /shared/"))}
 
-         run-docker {:task (shell "docker run --rm -p 3000:3000 -p 9000:9000 fulcro-rad-demo")}
+         run-docker {:task (shell "docker run --rm -p 13080:13008 -p 9000:9000 fulcro-rad-demo")}
          run-bash {:task (shell "docker run --rm -it -p 3000:3000 -p 9000:9000 fulcro-rad-demo bash")}
          watch {:doc "Watch & compile frontend"
                 :task (shell "npx shadow-cljs watch main")}

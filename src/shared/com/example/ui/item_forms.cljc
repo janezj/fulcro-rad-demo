@@ -17,7 +17,8 @@
 
 (form/defsc-form ItemForm [this props]
   {fo/id            item/id
-   fo/attributes    [item/item-name
+   fo/attributes    [item/id
+                     item/item-name
                      item/category
                      item/description
                      item/in-stock
